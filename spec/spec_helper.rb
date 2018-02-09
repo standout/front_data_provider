@@ -27,6 +27,6 @@ RSpec.configure do |config|
               'Accept' => 'application/json',
               'Authorization' => 'Bearer correct.token'
             })
-      .to_return(status: 200, body: File.read(File.dirname(__FILE__) + '/results.json'))
+      .to_return(status: 200, body: File.read(File.dirname(__FILE__) + '/unassigned.json'))
   end
 end

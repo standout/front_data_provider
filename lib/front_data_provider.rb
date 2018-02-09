@@ -1,5 +1,5 @@
 require 'front_data_provider/response'
-require 'httparty'
+require 'front_data_provider/fetcher'
 # Front Data Provider
 class FrontDataProvider
   attr_reader :options, :response
@@ -34,24 +34,5 @@ class FrontDataProvider
       title: 'Nya supportärenden',
       data: "Kunde inte hämta supportärenden från Front."
     }
-  end
-end
-
-class FrontDataFetcher
-  include HTTParty
-  base_uri 'https://api2.frontapp.com'
-  attr_reader :token
-
-  def initialize(token)
-    @token = token
-  end
-
-  def headers
-    { 'Authorization': "Bearer #{token}", 'Accept': 'application/json' }
-  end
-
-  def unassigned
-    res = self.class.get('/conversations?q[statuses][]=unassigned', headers: headers)
-    res['_results'].size.to_i
   end
 end

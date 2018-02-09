@@ -12,7 +12,7 @@ RSpec.describe FrontDataProvider do
 
     it 'fetches number of unassigned tickets' do
       p = FrontDataProvider.new(token: 'correct.token')
-      expect(p.unassigned[:data]).to eq 8
+      expect(p.unassigned[:data]).to eq 1
     end
 
     it 'handles front errors' do
