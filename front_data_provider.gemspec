@@ -1,11 +1,10 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'front_data_provider/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'front_data_provider'
-  spec.version       = FrontDataProvider::VERSION
+  spec.version       = '1.0.0'
   spec.authors       = ['David Elbe']
   spec.email         = ['david@standout.se']
 
@@ -21,6 +20,8 @@ Gem::Specification.new do |spec|
   spec.require_paths = ['lib']
 
   spec.add_development_dependency 'bundler', '~> 1.16'
+  spec.add_development_dependency 'byebug', '~> 10.0'
   spec.add_development_dependency 'rake', '~> 10.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_dependency 'httparty', '~> 0.15'
 end

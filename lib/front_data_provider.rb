@@ -1,5 +1,51 @@
-require "front_data_provider/version"
+require 'front_data_provider/response'
+require 'httparty'
+# Front Data Provider
+class FrontDataProvider
+  attr_reader :options, :response
 
-module FrontDataProvider
-  # Your code goes here...
+  Response = Struct.new(:data, :expiration)
+
+  def initialize(options = {})
+    @options = options
+  end
+
+  def fetch
+    FrontDataResponse.new(data)
+  end
+
+  def fetcher
+    @fetcher ||= FrontDataFetcher.new(options[:token])
+  end
+
+  def data
+    [unassigned]
+  end
+
+  def unassigned
+    {
+      type: 'number',
+      title: 'Nya supportärenden',
+      data: fetcher.unassigned
+    }
+  end
+end
+
+class FrontDataFetcher
+  include HTTParty
+  base_uri 'https://api2.frontapp.com'
+  attr_reader :token
+
+  def initialize(token)
+    @token = token
+  end
+
+  def headers
+    { 'Authorization': "Bearer #{token}", 'Accept': 'application/json' }
+  end
+
+  def unassigned
+    res = self.class.get('/conversations?q[statuses][]=unassigned', headers: headers)
+    res['_results'].size.to_i
+  end
 end
