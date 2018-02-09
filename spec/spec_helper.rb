@@ -1,6 +1,7 @@
 require "bundler/setup"
 require "front_data_provider"
 require 'byebug'
+require 'webmock/rspec'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

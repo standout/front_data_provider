@@ -28,6 +28,12 @@ class FrontDataProvider
       title: 'Nya supportärenden',
       data: fetcher.unassigned
     }
+  rescue
+    {
+      type: 'text',
+      title: 'Nya supportärenden',
+      data: "Kunde inte hämta supportärenden från Front."
+    }
   end
 end
 
