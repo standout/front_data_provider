@@ -32,7 +32,18 @@ class FrontDataProvider
     {
       type: 'text',
       title: 'Nya supportärenden',
-      data: "Kunde inte hämta supportärenden från Front."
+      data: 'Kunde inte hämta supportärenden från Front.'
+    }
+  end
+
+  def assigned
+    {
+      type: 'table',
+      title: 'Pågående supportärenden',
+      meta: {
+        headers: ['Namn', 'Antal']
+      },
+      data: fetcher.assigned
     }
   end
 end

@@ -28,5 +28,12 @@ RSpec.configure do |config|
               'Authorization' => 'Bearer correct.token'
             })
       .to_return(status: 200, body: File.read(File.dirname(__FILE__) + '/unassigned.json'))
+
+    stub_request(:get, 'https://api2.frontapp.com/conversations?q%5Bstatuses%5D%5B0%5D=assigned')
+      .with(headers: {
+              'Accept' => 'application/json',
+              'Authorization' => 'Bearer correct.token'
+            })
+      .to_return(status: 200, body: File.read(File.dirname(__FILE__) + '/unassigned.json'))
   end
 end
