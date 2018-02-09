@@ -15,13 +15,13 @@ class FrontDataFetcher
 
   def unassigned
     res = self.class.get('/conversations?q[statuses][]=unassigned', headers: headers)
-    json = JSON.parse(res)
+    json = JSON.parse(res.body)
     json.dig('_results').size.to_i
   end
 
   def assigned
     res = self.class.get('/conversations?q[statuses][]=assigned', headers: headers)
-    json = JSON.parse(res)
+    json = JSON.parse(res.body)
     people = json.dig('_results').collect{ |r|
       assignee = r.dig('assignee')
       [assignee['first_name'], assignee['last_name']].join(' ')

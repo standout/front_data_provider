@@ -19,7 +19,7 @@ class FrontDataProvider
   end
 
   def data
-    [unassigned]
+    [unassigned, assigned]
   end
 
   def unassigned
